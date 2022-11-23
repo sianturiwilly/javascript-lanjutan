@@ -1,70 +1,37 @@
-// Cara untuk membuat Object pada JavaScript
-// 1. Object Literal
-// Masalah: Tidak efektif untuk objek yang banyak.
-// let mahasiswa1 = {
-//     nama: 'Willi',
-//     energi: 10,
-//     makan: function(porsi) {
-//         this.energi = this.energi + porsi;
-//         console.log(`Halo ${this.nama}, selamat makan!`);
+// function init() {
+//     // let nama = 'Willi';
+//     return function(nama) {
+//         console.log(nama);
+//     }
+    
+// }
+// let panggilNama = init();
+// panggilNama('Willi');
+// panggilNama('Sianturi');
+
+// function ucapkanSalam(waktu) {
+//     return function(nama) {
+//         console.log(`Halo ${nama}, selamat ${waktu}, semoga harimu menyenangkan.`)
 //     }
 // }
 
-// let mahasiswa2 = {
-//     nama: 'Darwis',
-//     energi: 20,
-//     makan: function(porsi) {
-//         this.energi = this.energi + porsi;
-//         console.log(`Halo ${this.nama}, selamat makan!`);
-//     }
-// }
+// let selamatPagi =  ucapkanSalam('Pagi');
+// let selamatSiang =  ucapkanSalam('Siang');
+// let selamatMalam =  ucapkanSalam('Malam');
 
-// 2. Function Declaration
-const methodMahasiswa = {
-    makan: function(porsi) {
-        this.energi += porsi;
-        console.log(`Halo ${this.nama}, selamat makan.`);
-    },
+// console.dir(selamatMalam('Willi'));
 
-    main: function(jam) {
-        this.energi -= jam;
-        console.log(`Halo ${this.nama}, selamat bermain.`);
-    },
-
-    tidur: function(jam) {
-        this.energi += jam * 2;
-        console.log(`Halo ${this.nama}, selamat tidur.`);
+let add = (function() {
+    let counter = 0;
+    return function() {
+        return ++counter;
     }
-};
+})();
 
-function Mahasiswa(nama, energi) {
-    let mahasiswa = Object.create(methodMahasiswa);
-    mahasiswa.nama = nama;
-    mahasiswa.energi = energi;
+counter = 100;
 
-    return mahasiswa;
-}
-
-let willi = Mahasiswa('Willi', 10);
-let darwis = Mahasiswa('Darwis', 20);
-
-// 3. Constructor Function
-// Keyword new
-// function Mahasiswa(nama, energi) {
-//     this.nama = nama;
-//     this.energi = energi;
-
-//     this.makan = function(porsi) {
-//         this.energi += porsi;
-//         console.log(`Halo ${this.nama}, selamat makan!`); 
-//     }
-
-//     this.main = function(jam) {
-//         this.energi -= jam;
-//         console.log(`Halo ${this.nama}, selamat bermain.`)
-//     }
-// }
-
-// let willi = new Mahasiswa('Willi', 10);
-
-// 4. Object.create
+console.log(add());
+console.log(add());
+console.log(add());
+console.log(add());
+console.log(add());
